@@ -1,5 +1,6 @@
-# Experiment-no-7-DC-Motor-Speed-Control-Using-Arduino
-### AIM : To control the speed and the direction of a DC motor using L293D driver ic( H- bridge)
+# Experiment-no-6-DC-Motor-Speed-Control-Using-Arduino
+### AIM :
+ To control the speed and the direction of a DC motor using L293D driver ic( H- bridge)
 
 ### Components Required:
 •	Arduino UNO board
@@ -10,7 +11,7 @@
 •	12V source
 •	Breadboard
 •	Jumper wires
-### THEORY 
+### THEORY :
 The L293D quadruple half-H drivers chip allows us to drive 2 motors in both directions, with two PWM outputs from the Arduino we can easily control the speed as well as the direction of rotation of one DC motor. (PWM: Pulse Width Modulation).
 Arduino DC motor control circuit:
 Project circuit schematic diagram is the one below.
@@ -25,9 +26,51 @@ TABLE-01 EXITATION TABLE FOR H BRIDGE
 
 As shown in the circuit diagram we need only 3 Arduino terminal pins, pin 8 is for the push button which toggles the motor direction of rotation. Pins 9 and 10 are PWM signal outputs, at any time there is only 1 active PWM, this allows us to control the direction as well as the speed by varying the duty cycle of the PWM signal. The active PWM pin decides the motor direction of rotation (one at a time, the other output is logic 0).
 
-### PRGORAM 
+### PRGORAM:
+~~~C++
+#define m1 10
+#define m2 11
+#define m4 8
+#define m5 9
+
+#define m3 13
+int buttonState = 0;
+void setup()
+{
+  pinMode(m1, OUTPUT);
+  pinMode(m2, OUTPUT);
+  pinMode(m3, INPUT);
+  pinMode(m4, OUTPUT);
+  pinMode(m5, OUTPUT);
+  
+}
+
+void loop()
+{
+  buttonState = digitalRead(13);
+  if (buttonState == HIGH) {
+     digitalWrite(m1, HIGH);
+ 	 digitalWrite(m2, LOW);
+     digitalWrite(m4, HIGH);
+ 	 digitalWrite(m5, LOW);
+  }else if (buttonState == LOW){
+    digitalWrite(m1, LOW);
+ 	 digitalWrite(m2, LOW);
+     digitalWrite(m4, LOW);
+ 	 digitalWrite(m5, LOW);
+  }
+  else{
+      delay(1000);
+
+  }
+  
+  
+}
+~~~
 
 ### OUTPUT
+![](1.JPG)
+### RESULTS:
 
-### RESULTS AND DISCUSSION 
+Thus we have controled the speed and the direction of a DC motor using L293D driver ic( H- bridge).
 
